@@ -1,0 +1,26 @@
+{
+    "name": "Markdowner",
+    "version": "1.0",
+    "manifest_version" : 2,
+    "description": "選択した範囲をMarkdownに変換する。",
+    "permissions": ["contextMenus", "tabs", "clipboardRead","http://*/*", "https://*/*"],
+    "background": {
+        "scripts": ["background.js"]
+    },
+  "content_scripts": [
+    {
+    	"matches": ["http://*/*", "https://*/*"],
+		"js": ["chrome_extension.js","content.js", "reMarked.js"]
+    }
+   ],
+   "commands": {
+	   	"getMarkdown": {
+	   		"suggested_key": {
+	        "default": "Ctrl+Shift+1",
+	        "mac": "MacCtrl+Shift+1"
+	      },
+	      "description": "Get Markdown for selected range"
+	    }
+	}
+
+}
