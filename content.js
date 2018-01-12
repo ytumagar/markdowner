@@ -478,7 +478,8 @@ function impressImageReplace(doc) {
 	
 	var imgs = Array.apply(null, doc.querySelectorAll('img'));
 	imgs.forEach(function(img){
-		//img.src = proxyURL+encodeURIComponent(img.src);			
+		//img.src = proxyURL+encodeURIComponent(img.src);	
+		img.src = img.src.replace(/(\d{3})_[lms](\.(jpg|JPG))/, '$1_o$2');
 		img.src = proxyURL+img.src;
         var div = document.createElement('div');
         div.textContent = '';
