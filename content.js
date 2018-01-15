@@ -258,8 +258,8 @@ function cleanElement(doc){
     } else if (/impress\.co\.jp/.test(location.href)){
     	removeElement(doc, 'div.nav-04');
         removeElement(doc, '.social-bookmark');
-	impressImageReplace(doc);
-        imageReplace(doc);
+		//impressImageReplace(doc);
+        imageReplace(doc, impressImageReplaceFunc);
     } else if (/itmedia\.co\.jp/.test(location.href)){
     	removeElement(doc, 'div#masterSocialbuttonTop');
         removeElement(doc, 'div.endlink');
@@ -469,6 +469,14 @@ function imageReplace(doc, srcReplaceFunc) {
         img.parentNode.parentNode.insertBefore(div, img.parentNode.nextSibling); 
     });     
     return doc;
+}
+
+function impressImageReplaceFunc(src) {
+		//img.src = proxyURL+encodeURIComponent(img.src);
+		console.log('BEFORE : ' + src);
+		src = src.replace(/(\d{3})_[lms](\.(jpg|JPG))/, '$1_o$2');
+		console.log('AFTER  : ' + src);
+		return src;
 }
 
 function impressImageReplace(doc) {
