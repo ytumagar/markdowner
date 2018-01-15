@@ -258,7 +258,6 @@ function cleanElement(doc){
     } else if (/impress\.co\.jp/.test(location.href)){
     	removeElement(doc, 'div.nav-04');
         removeElement(doc, '.social-bookmark');
-		//impressImageReplace(doc);
         imageReplace(doc, impressImageReplaceFunc);
     } else if (/itmedia\.co\.jp/.test(location.href)){
     	removeElement(doc, 'div#masterSocialbuttonTop');
@@ -278,7 +277,7 @@ function cleanElement(doc){
     } else if (/www\.b-otaku\.com/.test(location.href)){
         removeElement(doc, 'ins');
         removeElement(doc, 'script');
-        impressImageReplace(doc);
+        imageReplace(doc);
     } else if (/zdnet\.com/.test(location.href)){
         removeElement(doc, '#social_bkm_wrap_bottom');
         removeElement(doc, '.ad-text');        
@@ -457,12 +456,12 @@ function imageReplace(doc, srcReplaceFunc) {
     
     var imgs = Array.apply(null, doc.querySelectorAll('img'));
     imgs.forEach(function(img){
-        //img.src = proxyURL+encodeURIComponent(img.src);           
         if (typeof(srcReplaceFunc)==="function"){
-            img.src = proxyURL+srcReplaceFunc(img.src);
-        }else{
-            img.src = proxyURL+img.src;
+            img.src = srcReplaceFunc(img.src);
+	        img.src = proxyURL+img.src;
         }
+
+
         var div = document.createElement('div');
         div.textContent = '';
         //img.parentNode.parentNode.insertBefore(div, img.nextSibling); 
@@ -479,25 +478,6 @@ function impressImageReplaceFunc(src) {
 		return src;
 }
 
-function impressImageReplace(doc) {
-	var resizeWidth = '640';
-	var proxyURL = 'https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w='+
-		resizeWidth +'&refresh=604800&url=';
-	
-	var imgs = Array.apply(null, doc.querySelectorAll('img'));
-	imgs.forEach(function(img){
-		//img.src = proxyURL+encodeURIComponent(img.src);
-		console.log('BEFORE : ' + img.src);
-		img.src = img.src.replace(/(\d{3})_[lms](\.(jpg|JPG))/, '$1_o$2');
-		console.log('AFTER  : ' + img.src);
-		img.src = proxyURL+img.src;
-        var div = document.createElement('div');
-        div.textContent = '';
-        //img.parentNode.parentNode.insertBefore(div, img.nextSibling); 
-        img.parentNode.parentNode.insertBefore(div, img.parentNode.nextSibling); 
-	});		
-	return doc;
-}
 
 function responseImageReplace(doc) {
     var resizeWidth = '640';
