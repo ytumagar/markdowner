@@ -473,7 +473,7 @@ function imageReplace(doc, srcReplaceFunc) {
 function impressImageReplaceFunc(src) {
 		//img.src = proxyURL+encodeURIComponent(img.src);
 		console.log('BEFORE : ' + src);
-		src = src.replace(/(\d{3})_[lms](\.(jpg|JPG))/, '$1_o$2');
+		src = src.replace(/(\d{1-3})_[lms](\.(jpg|JPG))/, '$1_o$2');
 		console.log('AFTER  : ' + src);
 		return src;
 }
