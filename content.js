@@ -258,7 +258,7 @@ function cleanElement(doc){
     } else if (/impress\.co\.jp/.test(location.href)){
     	removeElement(doc, 'div.nav-04');
         removeElement(doc, '.social-bookmark');
-		//impressImageReplace(doc);
+	impressImageReplace(doc);
         imageReplace(doc);
     } else if (/itmedia\.co\.jp/.test(location.href)){
     	removeElement(doc, 'div#masterSocialbuttonTop');
