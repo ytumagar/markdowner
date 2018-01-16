@@ -340,6 +340,12 @@ function modifyGsmarena(doc){
 }
 
 function removeElement(doc, sel){
+    if (Array.isArray(sel)){
+        sel.forEach(function(selStr){
+            removeElement(doc, selStr);
+        });
+        return doc;
+    }
     var els = Array.apply(null, doc.querySelectorAll(sel));
     els.forEach(function(el){
         el.parentNode.removeChild(el);
