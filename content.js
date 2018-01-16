@@ -1,7 +1,7 @@
 /*
 chrome.extension.onRequest.addListener(
   function(request, sender, sendResponse) {
-	var md = getMarkdown();
+    var md = getMarkdown();
 
     console.log(sender.tab ?
                 "from a content script:" + sender.tab.url :
@@ -15,49 +15,49 @@ chrome.extension.onRequest.addListener(
 */
 
 var options = {
-		link_list:	false,			// render links as references, create link list as appendix
-	//  link_near:					// cite links immediately after blocks
-		h1_setext:	false,			// underline h1 headers
-		h2_setext:	false,			// underline h2 headers
-		h_atx_suf:	false,			// header suffixes (###)
-	//	h_compact:	true,			// compact headers (except h1)
-		gfm_code:	true,			// gfm code blocks (```)
-		trim_code:	false,			// trim whitespace within <pre><code> blocks (full block, not per line)
-		li_bullet:	"*-+"[0],		// list item bullet style
-	//	list_indnt:					// indent top-level lists
-		hr_char:	"-_*"[0],		// hr style
-		indnt_str:	["    ","\t","  "][0],	// indentation string
-		bold_char:	"*_"[0],		// char used for strong
-		emph_char:	"*_"[1],		// char used for em
-		gfm_del:	true,			// ~~strikeout~~ for <del>strikeout</del>
-		gfm_tbls:	false,			// markdown-extra tables
-		tbl_edges:	false,			// show side edges on tables
-		hash_lnks:	false,			// anchors w/hash hrefs as links
-		br_only:	false,			// avoid using "  " as line break indicator
-		col_pre:	" ",			// column prefix to use when creating missing headers for tables
-		nbsp_spc:	false,			// convert &nbsp; entities in html to regular spaces
-		span_tags:	true,			// output spans (ambiguous) using html tags
-		div_tags:	true,			// output divs (ambiguous) using html tags
-	//	comp_style: false,			// use getComputedStyle instead of hardcoded tag list to discern block/inline
-		unsup_tags: {				// handling of unsupported tags, defined in terms of desired output style. if not listed, output = outerHTML
-			// no output
-			ignore: "script style noscript",
-			// eg: "<tag>some content</tag>"
-			inline: "span sup sub i u b center big",
-			// eg: "\n<tag>\n\tsome content\n</tag>"
-		//	block1: "",
-			// eg: "\n\n<tag>\n\tsome content\n</tag>"
-			block2: "div form fieldset dl header footer address article aside figure hgroup section",
-			// eg: "\n<tag>some content</tag>"
-			block1c: "dt dd caption legend figcaption output",
-			// eg: "\n\n<tag>some content</tag>"
-			block2c: "canvas audio video iframe"
-		},
-		tag_remap: {				// remap of variants or deprecated tags to internal classes
-			"i": "em",
-			"b": "strong"
-		}
-};		
+        link_list:  false,          // render links as references, create link list as appendix
+    //  link_near:                  // cite links immediately after blocks
+        h1_setext:  false,          // underline h1 headers
+        h2_setext:  false,          // underline h2 headers
+        h_atx_suf:  false,          // header suffixes (###)
+    //  h_compact:  true,           // compact headers (except h1)
+        gfm_code:   true,           // gfm code blocks (```)
+        trim_code:  false,          // trim whitespace within <pre><code> blocks (full block, not per line)
+        li_bullet:  "*-+"[0],       // list item bullet style
+    //  list_indnt:                 // indent top-level lists
+        hr_char:    "-_*"[0],       // hr style
+        indnt_str:  ["    ","\t","  "][0],  // indentation string
+        bold_char:  "*_"[0],        // char used for strong
+        emph_char:  "*_"[1],        // char used for em
+        gfm_del:    true,           // ~~strikeout~~ for <del>strikeout</del>
+        gfm_tbls:   false,          // markdown-extra tables
+        tbl_edges:  false,          // show side edges on tables
+        hash_lnks:  false,          // anchors w/hash hrefs as links
+        br_only:    false,          // avoid using "  " as line break indicator
+        col_pre:    " ",            // column prefix to use when creating missing headers for tables
+        nbsp_spc:   false,          // convert &nbsp; entities in html to regular spaces
+        span_tags:  true,           // output spans (ambiguous) using html tags
+        div_tags:   true,           // output divs (ambiguous) using html tags
+    //  comp_style: false,          // use getComputedStyle instead of hardcoded tag list to discern block/inline
+        unsup_tags: {               // handling of unsupported tags, defined in terms of desired output style. if not listed, output = outerHTML
+            // no output
+            ignore: "script style noscript",
+            // eg: "<tag>some content</tag>"
+            inline: "span sup sub i u b center big",
+            // eg: "\n<tag>\n\tsome content\n</tag>"
+        //  block1: "",
+            // eg: "\n\n<tag>\n\tsome content\n</tag>"
+            block2: "div form fieldset dl header footer address article aside figure hgroup section",
+            // eg: "\n<tag>some content</tag>"
+            block1c: "dt dd caption legend figcaption output",
+            // eg: "\n\n<tag>some content</tag>"
+            block2c: "canvas audio video iframe"
+        },
+        tag_remap: {                // remap of variants or deprecated tags to internal classes
+            "i": "em",
+            "b": "strong"
+        }
+};      
 
 function getMarkdown() {
     if (/qiita\.com\/.*\/items\//.test(location.href)){
@@ -128,8 +128,8 @@ function cleanElement(doc){
 
 
     if (/diamond\.jp\/articles/.test(location.href)){
-    	removeElement(doc, 'div#multipage-top');
-    	removeElement(doc, 'div#service-menu');
+        removeElement(doc, 'div#multipage-top');
+        removeElement(doc, 'div#service-menu');
         removeElement(doc, '.article-functions');
     } else if (/gsmarena\.com/.test(location.href)){
         removeElement(doc, '.article-info-line');
@@ -168,30 +168,30 @@ function cleanElement(doc){
         removeElement(doc, '.itx-container');
         responseImageReplace(doc);
     } else if (/autoc-one\.jp/.test(location.href)){
-    	//removeElement(doc, '.mb10');
-    	removeElement(doc, '.new_article_image_list');
-    	removeElement(doc, '.new_pager');
-    	removeElement(doc, '.tar');
-    	removeElement(doc, '.ad_box_double');
-    	removeElement(doc, '.photo_loupe-loupe');
-    	removeElement(doc, '.mb20');
-    	removeElement(doc, '.mod_La15-1');
-    	removeElement(doc, '.mod_La15-2');    	
-    	removeElement(doc, '.mod_La88');
-    	removeElement(doc, '.mod_La97');
-    	removeElement(doc, '.mod_La94');
-    	removeElement(doc, '.mod_La1-3');
-    	removeElement(doc, '.mod_L1-2_static');
-    	removeElement(doc, '.articleListBox');
-    	removeElement(doc, '.new_h1_bar635');
-    	removeElement(doc, '.articleListBox2');
-    	removeElement(doc, '.mod_L11-1');
-    	removeElement(doc, '#_popIn_recommend');
+        //removeElement(doc, '.mb10');
+        removeElement(doc, '.new_article_image_list');
+        removeElement(doc, '.new_pager');
+        removeElement(doc, '.tar');
+        removeElement(doc, '.ad_box_double');
+        removeElement(doc, '.photo_loupe-loupe');
+        removeElement(doc, '.mb20');
+        removeElement(doc, '.mod_La15-1');
+        removeElement(doc, '.mod_La15-2');      
+        removeElement(doc, '.mod_La88');
+        removeElement(doc, '.mod_La97');
+        removeElement(doc, '.mod_La94');
+        removeElement(doc, '.mod_La1-3');
+        removeElement(doc, '.mod_L1-2_static');
+        removeElement(doc, '.articleListBox');
+        removeElement(doc, '.new_h1_bar635');
+        removeElement(doc, '.articleListBox2');
+        removeElement(doc, '.mod_L11-1');
+        removeElement(doc, '#_popIn_recommend');
 
-		Array.apply(null,doc.querySelectorAll('a img')).forEach(function(img){
-			img.removeAttribute('title');
-			img.removeAttribute('alt');
-		});    	
+        Array.apply(null,doc.querySelectorAll('a img')).forEach(function(img){
+            img.removeAttribute('title');
+            img.removeAttribute('alt');
+        });     
 
     } else if (/business\.nikkeibp\.co\.jp\/(article|atcl)/.test(location.href)){
         removeElement(doc, 'div#bookmarkBoxTop');
@@ -201,11 +201,11 @@ function cleanElement(doc){
         removeElement(doc, 'div.icons');
         removeElement(doc, 'div.middle');        
     } else if (/gendai\.ismedia\.jp\/articles/.test(location.href)){
-    	removeElement(doc, 'div#service-menu');
-    	removeElement(doc, 'div#mc-upperline');
-    	//removeElement(doc, 'div#mp-ie');
+        removeElement(doc, 'div#service-menu');
+        removeElement(doc, 'div#mc-upperline');
+        //removeElement(doc, 'div#mp-ie');
     } else if (/www\.webcg\.net\/articles/.test(location.href)){
-    	removeElement(doc, 'div.body');
+        removeElement(doc, 'div.body');
         removeElement(doc, 'div.sns');
         removeElement(doc, 'div.ad');
         removeElement(doc, '.next-page-title-link');
@@ -224,61 +224,63 @@ function cleanElement(doc){
         });     
 
     } else if (/itpro\.nikkeibp\.co\.jp/.test(location.href)){
-    	removeElement(doc, 'div.snsBtn');
+        removeElement(doc, 'div.snsBtn');
         removeElement(doc, '#articleBottom');
         if (document.querySelector('header#articleHeader')!==null){
             document.querySelector('header#articleHeader:first-of-type').id="articleHeaderTop";
             removeElement(doc, 'header#articleHeader');
         }
     } else if (/toyokeizai\.net/.test(location.href)){
-    	removeElement(doc, 'div.title-bottom-menu.clearfix.v2');
-		removeElement(doc, 'div.tools.clearfix');
-		removeElement(doc, 'div.profile');
+        removeElement(doc, 'div.title-bottom-menu.clearfix.v2');
+        removeElement(doc, 'div.tools.clearfix');
+        removeElement(doc, 'div.profile');
     } else if (/portal\.nifty\.com/.test(location.href)){
-    	removeElement(doc, 'div#ydn_ad');
+        removeElement(doc, 'div#ydn_ad');
     } else if (/qiita\.com/.test(location.href)){
         removeElement(doc, 'div.js-report-form');
-    	removeElement(doc, 'div#ydn_ad');
-    	removeElement(doc, 'div.col-sm-3');
-    	removeElement(doc, 'div.col-sm-9 > ul.list-unstyled.list-inline.itemsShowHeaderTags');
-    	removeElement(doc, 'div.col-sm-9 > ul.list-unstyled.list-inline.itemsShowHeaderTitle_status');
+        removeElement(doc, 'div#ydn_ad');
+        removeElement(doc, 'div.col-sm-3');
+        removeElement(doc, 'div.col-sm-9 > ul.list-unstyled.list-inline.itemsShowHeaderTags');
+        removeElement(doc, 'div.col-sm-9 > ul.list-unstyled.list-inline.itemsShowHeaderTitle_status');
     } else if (/jbpress\.ismedia\.jp/.test(location.href)){
-    	removeElement(doc, 'div.upper-tools-wp');
-    	removeElement(doc, 'div.upper.clearfix');
-    	removeElement(doc, 'div.premium-info');
-    	removeElement(doc, 'div.common-pg');
+        removeElement(doc, 'div.upper-tools-wp');
+        removeElement(doc, 'div.upper.clearfix');
+        removeElement(doc, 'div.premium-info');
+        removeElement(doc, 'div.common-pg');
         removeElement(doc, 'div.date-author');
         removeElement(doc, 'div.title-icons');
         removeElement(doc, 'div.left-column');
         removeElement(doc, 'div.ad-right');
 
     } else if (/news\.mynavi\.jp/.test(location.href)){
-    	removeElement(doc, 'div#ad-index-text');
-    	removeElement(doc, 'div.str-lyt-page-nav-06-outer-upper');
+        removeElement(doc, 'div#ad-index-text');
+        removeElement(doc, 'div.str-lyt-page-nav-06-outer-upper');
     } else if (/impress\.co\.jp/.test(location.href)){
-    	removeElement(doc, 'div.nav-04');
+        removeElement(doc, 'div.nav-04');
         removeElement(doc, '.social-bookmark');
-		//impressImageReplace(doc);
-        imageReplace(doc);
+        imageReplace(doc, function (src) {
+            return src.replace(/(\d{1,3})_[lms](\.(jpg|JPG))/, '$1_o$2');
+        });
+
     } else if (/itmedia\.co\.jp/.test(location.href)){
-    	removeElement(doc, 'div#masterSocialbuttonTop');
+        removeElement(doc, 'div#masterSocialbuttonTop');
         removeElement(doc, 'div.endlink');
         removeElement(doc, 'div#ITT');
     } else if (/ascii\.jp\/elem/.test(location.href)){
-		replaceImageLinkAscii(doc);
+        replaceImageLinkAscii(doc);
     } else if (/hatenablog\.co/.test(location.href) ||
-    			/hateblo\.jp/.test(location.href) ||
+                /hateblo\.jp/.test(location.href) ||
                 /hatelabo\.jp/.test(location.href) 
-    	){
-    	var keywordLinks = doc.querySelectorAll('a.keyword');
-    	for (var i = keywordLinks.length - 1; i >= 0; i--) {
-    		var el = keywordLinks[i];
-    		el.parentNode.replaceChild(document.createTextNode(el.innerText), el);
-    	}
+        ){
+        var keywordLinks = doc.querySelectorAll('a.keyword');
+        for (var i = keywordLinks.length - 1; i >= 0; i--) {
+            var el = keywordLinks[i];
+            el.parentNode.replaceChild(document.createTextNode(el.innerText), el);
+        }
     } else if (/www\.b-otaku\.com/.test(location.href)){
         removeElement(doc, 'ins');
         removeElement(doc, 'script');
-        impressImageReplace(doc);
+        imageReplace(doc);
     } else if (/zdnet\.com/.test(location.href)){
         removeElement(doc, '#social_bkm_wrap_bottom');
         removeElement(doc, '.ad-text');        
@@ -311,7 +313,7 @@ function cleanElement(doc){
     }
 
 
-    return doc;	
+    return doc; 
 }
 
 function removeAutoPagerBreaker(doc, sel){
@@ -337,43 +339,43 @@ function modifyGsmarena(doc){
 }
 
 function removeElement(doc, sel){
-	var els = Array.apply(null, doc.querySelectorAll(sel));
-	els.forEach(function(el){
-		el.parentNode.removeChild(el);
-	});
-	return doc;
+    var els = Array.apply(null, doc.querySelectorAll(sel));
+    els.forEach(function(el){
+        el.parentNode.removeChild(el);
+    });
+    return doc;
 }
 
 function replaceImageLink(doc){
-	var imgs = Array.apply(null, doc.querySelectorAll('img'));
-	imgs.forEach(function(img){
-		if (img.parentNode.tagName === 'A'){
-			img.parentNode.href = img.src;
-		}
-	});
-	return doc;	
+    var imgs = Array.apply(null, doc.querySelectorAll('img'));
+    imgs.forEach(function(img){
+        if (img.parentNode.tagName === 'A'){
+            img.parentNode.href = img.src;
+        }
+    });
+    return doc; 
 }
 
 function replaceYoutubeEmbeded(doc){
     var videos = Array.apply(null,doc.querySelectorAll('iframe[src*="//www.youtube.com/embed"]'));
     videos.forEach(function(v){
-    	if(/embed\/([\w\-]*)/.test(v.src)){
-    		var key = RegExp.$1;
-	    	var link=document.createElement('a');
-	    	link.href='https://www.youtube.com/watch?v=' + key;
-	    	var linkText = link.cloneNode();
+        if(/embed\/([\w\-]*)/.test(v.src)){
+            var key = RegExp.$1;
+            var link=document.createElement('a');
+            link.href='https://www.youtube.com/watch?v=' + key;
+            var linkText = link.cloneNode();
 
-	    	var img = document.createElement('img');
-	    	img.src='http://img.youtube.com/vi/' + key + '/0.jpg';
-	    	link.appendChild(img);
+            var img = document.createElement('img');
+            img.src='http://img.youtube.com/vi/' + key + '/0.jpg';
+            link.appendChild(img);
 
-	    	var linkTitle = document.createElement('h3');
-	    	linkText.innerHTML = 'Link to Youtube';
-	    	linkTitle.appendChild(linkText);
+            var linkTitle = document.createElement('h3');
+            linkText.innerHTML = 'Link to Youtube';
+            linkTitle.appendChild(linkText);
 
-	    	v.parentElement.insertBefore(linkTitle, v);
-	    	v.parentElement.insertBefore(link, v);
-    	}
+            v.parentElement.insertBefore(linkTitle, v);
+            v.parentElement.insertBefore(link, v);
+        }
     });
 
 }
@@ -390,25 +392,25 @@ function replacePre2Code(doc){
 }
 
 function replaceImageLinkAscii(doc){
-	var xhr = new XMLHttpRequest();
-	var imgs = Array.apply(null, doc.querySelectorAll('img'));
-	imgs.forEach(function(img){
-		if (img.parentNode.tagName === 'A' && (/img\.html$/.test(img.parentNode.href))){
-			xhr.open("GET", img.parentNode.href, false);
-			xhr.send(null);
-			var dom = document.createElement("dom");
-			dom.innerHTML = xhr.responseText;
-			var imgURLRE = new RegExp(img.src.match('^.*_'));
-			var domImgs = dom.getElementsByTagName('img');
-			for (var i=0;i<domImgs.length;i++){
-				if(imgURLRE.test(domImgs[i].src)){
-					img.src = domImgs[i].src;
-				}
-			}
+    var xhr = new XMLHttpRequest();
+    var imgs = Array.apply(null, doc.querySelectorAll('img'));
+    imgs.forEach(function(img){
+        if (img.parentNode.tagName === 'A' && (/img\.html$/.test(img.parentNode.href))){
+            xhr.open("GET", img.parentNode.href, false);
+            xhr.send(null);
+            var dom = document.createElement("dom");
+            dom.innerHTML = xhr.responseText;
+            var imgURLRE = new RegExp(img.src.match('^.*_'));
+            var domImgs = dom.getElementsByTagName('img');
+            for (var i=0;i<domImgs.length;i++){
+                if(imgURLRE.test(domImgs[i].src)){
+                    img.src = domImgs[i].src;
+                }
+            }
 
-		}
-	});
-	return doc;	
+        }
+    });
+    return doc; 
 }
 
 function insertImageDiv(doc) {
@@ -457,12 +459,12 @@ function imageReplace(doc, srcReplaceFunc) {
     
     var imgs = Array.apply(null, doc.querySelectorAll('img'));
     imgs.forEach(function(img){
-        //img.src = proxyURL+encodeURIComponent(img.src);           
         if (typeof(srcReplaceFunc)==="function"){
-            img.src = proxyURL+srcReplaceFunc(img.src);
-        }else{
+            img.src = srcReplaceFunc(img.src);
             img.src = proxyURL+img.src;
         }
+
+
         var div = document.createElement('div');
         div.textContent = '';
         //img.parentNode.parentNode.insertBefore(div, img.nextSibling); 
@@ -471,23 +473,6 @@ function imageReplace(doc, srcReplaceFunc) {
     return doc;
 }
 
-function impressImageReplace(doc) {
-	var resizeWidth = '640';
-	var proxyURL = 'https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&resize_w='+
-		resizeWidth +'&refresh=604800&url=';
-	
-	var imgs = Array.apply(null, doc.querySelectorAll('img'));
-	imgs.forEach(function(img){
-		//img.src = proxyURL+encodeURIComponent(img.src);
-		img.src = img.src.replace(/(\d{3})_[lms](\.(jpg|JPG))/, '$1_o$2');	
-		img.src = proxyURL+img.src;
-        var div = document.createElement('div');
-        div.textContent = '';
-        //img.parentNode.parentNode.insertBefore(div, img.nextSibling); 
-        img.parentNode.parentNode.insertBefore(div, img.parentNode.nextSibling); 
-	});		
-	return doc;
-}
 
 function responseImageReplace(doc) {
     var resizeWidth = '640';
@@ -602,3 +587,4 @@ function modMd(str) {
  
     return outStr;
 }    
+
