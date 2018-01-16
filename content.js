@@ -259,6 +259,7 @@ function cleanElement(doc){
         removeElement(doc, 'div.nav-04');
         removeElement(doc, '.social-bookmark');
         imageReplace(doc, function (src) {
+			console.log(src);
             return src.replace(/(\d{1,3})_[lms](\.(jpg|JPG))/, '$1_o$2');
         });
 
