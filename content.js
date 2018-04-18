@@ -223,7 +223,7 @@ function cleanElement(doc){
             img.src = img.src.replace('/200/','/-/');
         });     
 
-    } else if (/itpro\.nikkeibp\.co\.jp/.test(location.href)){
+    } else if (/(itpro|tech)\.nikkeibp\.co\.jp/.test(location.href)){
         removeElement(doc, 'div.snsBtn');
         removeElement(doc, '#articleBottom');
         if (document.querySelector('header#articleHeader')!==null){
