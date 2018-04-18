@@ -225,6 +225,7 @@ function cleanElement(doc){
 
     } else if (/(itpro|tech)\.nikkeibp\.co\.jp/.test(location.href)){
         removeElement(doc, 'div.snsBtn');
+        removeElement(doc, 'div.tools.clearfix');
         removeElement(doc, '#articleBottom');
         if (document.querySelector('header#articleHeader')!==null){
             document.querySelector('header#articleHeader:first-of-type').id="articleHeaderTop";
