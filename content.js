@@ -227,6 +227,7 @@ function cleanElement(doc){
         removeElement(doc, 'div.snsBtn');
         removeElement(doc, 'div.tools.clearfix');
         removeElement(doc, '#articleBottom');
+	removeElement(doc, '.nxt_notice');
         if (document.querySelector('header#articleHeader')!==null){
             document.querySelector('header#articleHeader:first-of-type').id="articleHeaderTop";
             removeElement(doc, 'header#articleHeader');
