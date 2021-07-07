@@ -1,0 +1,178 @@
+[
+  {
+    "action": "javascript",
+    "blacklist": false,
+    "code": "javascript:(function(){useReMarked();function useReMarked(){var srcs=[\"https://ytumagar.github.io/markdowner/reMarked.js\",\"https://ytumagar.github.io/markdowner/content.js\"];var md;var count=0;var afterLoad=function(){if(count<=1){console.log(new Date().toLocaleTimeString());console.log('Done.');window.setTimeout(2000,createURLArea(cleanMD(getMarkdown(),location.href)));}else{count--;}};var loaded=srcs.every(function(scriptSrc){count++;var scriptTag=document.createElement('script');scriptTag.src=scriptSrc;scriptTag.onload=afterLoad;document.body.appendChild(scriptTag);return true;});}})();",
+    "customName": "Markdowner",
+    "exported": false,
+    "key": "m d",
+    "open": false,
+    "sites": "*mail.google.com*",
+    "sitesArray": [
+      "*mail.google.com*"
+    ]
+  },
+  {
+    "action": "javascript",
+    "blacklist": false,
+    "code": "var srcUrl = \"https://ytumagar.github.io/Bookmarklet/amazonPrice.js\";\n\nfunction loadScript(src, callback) {\n    var head = document.getElementsByTagName('head')[0];\n    var script = document.createElement('script');\n    script.src = src;\n    head.appendChild(script);\n\n    callback();\n}\n\nloadScript(srcUrl, function() {\n    console.log('script loaded');\n});",
+    "customName": "Amazon add list",
+    "exported": false,
+    "key": "a m a",
+    "open": false,
+    "sites": "*mail.google.com*",
+    "sitesArray": [
+      "*mail.google.com*"
+    ]
+  },
+  {
+    "action": "openbookmark",
+    "blacklist": false,
+    "bookmark": "Open Extension",
+    "exported": false,
+    "key": "cmd+e",
+    "open": false,
+    "sites": "*mail.google.com*",
+    "sitesArray": [
+      "*mail.google.com*"
+    ]
+  },
+  {
+    "action": "gototab",
+    "blacklist": false,
+    "customName": "Chrome拡張設定",
+    "exported": false,
+    "key": "e x t",
+    "matchurl": "chrome://extensions/",
+    "open": false,
+    "openurl": "chrome://extensions/",
+    "sites": "*mail.google.com*",
+    "sitesArray": [
+      "*mail.google.com*"
+    ]
+  },
+  {
+    "action": "gototab",
+    "blacklist": false,
+    "customName": "Shortkeys設定",
+    "exported": false,
+    "key": "s h o",
+    "matchurl": "chrome://extensions/?options=logpjaacgmcbpdkdchjiaagddngobkck",
+    "open": false,
+    "openurl": "chrome://extensions/?options=logpjaacgmcbpdkdchjiaagddngobkck",
+    "sites": "*mail.google.com*",
+    "sitesArray": [
+      "*mail.google.com*"
+    ]
+  },
+  {
+    "action": "javascript",
+    "blacklist": false,
+    "code": "(function() {\n\t\t\tt = new Date();\n\t\t\ty = t.getFullYear();\n\t\t\tm = t.getMonth() + 1;\n\t\t\td = t.getDate();\n\t\t\tif (m < 10) m = \"0\"+m;if(d<10)d=\"0\"+d;var reportName=\"YT-\"+y+m+d+\"-01\";var reportNameField=document.querySelector('div#Report_1120_TRAVELER_ISNEW_Name_cell>input');if(reportNameField!==null){reportNameField.value=\"YT \"+y+m+d+\" 01\";}else{prompt('ReportName',reportName);}})();",
+    "customName": "Concur Report Name",
+    "exported": false,
+    "key": "c o n",
+    "open": false,
+    "sites": "*mail.google.com*",
+    "sitesArray": [
+      "*mail.google.com*"
+    ]
+  },
+  {
+    "action": "closetab",
+    "blacklist": false,
+    "exported": false,
+    "key": "_",
+    "open": false,
+    "sites": "*mail.google.com*",
+    "sitesArray": [
+      "*mail.google.com*"
+    ],
+    "label": ""
+  },
+  {
+    "action": "gototab",
+    "blacklist": false,
+    "customName": "設定",
+    "exported": false,
+    "key": "s e t",
+    "matchurl": "chrome://settings/*",
+    "open": false,
+    "openurl": "chrome://settings/",
+    "sites": "*mail.google.com*",
+    "sitesArray": [
+      "*mail.google.com*"
+    ]
+  },
+  {
+    "action": "javascript",
+    "blacklist": "false",
+    "code": "var regSearch = /(alohaRedirect|sObject)(\\/ContentDocument)*\\/(\\w{15,18})/;\nvar lightningURL = /force\\.com\\/lightning\\/.*\\/(\\w{15,18})/;\nvar currentUrl = location;\nvar targetUrl;\nvar title = document.title;\nvar recordId;\n\nvar subTabReg = 'div.active>div.wsTabset.oneConsoleTabset:not(.wsTabBarHidden) .tabItem a[tabindex=\"0\"]';\nvar tabTitleReg = 'span.title';\nvar activeSubTab = document.querySelector(subTabReg);\n\nif (activeSubTab != null){\n\tcurrentUrl = activeSubTab;\n\ttitle = activeSubTab.querySelector(tabTitleReg).innerText;\n}\n\nif (regSearch.test(currentUrl.hash.substring(1))){\n\trecordId = RegExp.$3;\n} else if (lightningURL.test(location.href) || lightningURL.test(window.parent.location.href)) {\n\trecordId = RegExp.$1;\n\n} else  if(/one\\.app#/.test(location.href)){\n\tvar jsonParam = \n\t\tJSON.parse(atob(decodeURIComponent(currentUrl.hash.substring(1))));\n\trecordId = jsonParam.attributes.feedElementId;\n}\n\nvar selStr = window.getSelection().toString();\n\nif (recordId != null){\n\ttargetUrl = currentUrl.origin + '/' + recordId;\n\ttitle = title.replace(/ \\|.*$/,'');\n\tselStr = selStr.replace(/^\\n/gm,'');\n}else if (location.host.match(/www.amazon.co[m|.jp]/) && /(\\/\\w{10})/.test(location.pathname) ){\n\ttargetUrl = location.origin+'/dp'+ RegExp.$1;\n\tprice=document.querySelectorAll('#price_inside_buybox,#priceblock_ourprice')[0];\n\tif (price !== undefined){\n\ttitle += ' ' + price.innerText;\n}\n\t\n}else{\n\ttargetUrl = currentUrl.href;\n}\n\n\nvar str = title + \"\\n\" +targetUrl;\n\nvar ele = document.createElement(\"textarea\");\nvar deleteElement=function(ele){if(ele.parentElement!=null){ele.parentNode.removeChild(ele);}};\nele.id=\"urltitle\";\nele.style.width=\"100%\";\nele.value=str+\"\\n\"+selStr;\ndocument.body.insertBefore(ele,document.body.firstChild);\nele.style.height=ele.scrollHeight+\"px\";\nele.style.position='relative';\nele.style.zIndex='999';\nwindow.scroll(0,0);\nele.focus();\nele.select();\nele.onkeyup=function(e){if(e.keyCode==27){deleteElement(this);}};\nele.oncopy=function(){setTimeout(deleteElement,1,this);};",
+    "customName": "Copy URL + Title",
+    "exported": false,
+    "key": "u u",
+    "open": false,
+    "sites": "",
+    "sitesArray": [
+      ""
+    ]
+  },
+  {
+    "action": "javascript",
+    "blacklist": "whitelist",
+    "code": "var regSearch = /(alohaRedirect|sObject)(\\/ContentDocument)*\\/(\\w{15,18})/;\nvar currentUrl = location;\nvar fileUrl = location.origin + '/sfc/#version/';\nvar objUrl = location.origin + '/udd/ContentDistribution/wiz/selectContent.apexp?whatId=';\nvar targetUrl;\nvar title = document.title;\nvar recordId;\n\nvar subTabReg = 'div.active>div.wsTabset.oneConsoleTabset:not(.wsTabBarHidden) .tabItem a[tabindex=\"0\"]';\nvar tabTitleReg = 'span.title';\nvar activeSubTab = document.querySelector(subTabReg);\n\nif (activeSubTab != null){\n\tcurrentUrl = activeSubTab;\n\ttitle = activeSubTab.querySelector(tabTitleReg).innerText;\n}\n\nif (regSearch.test(currentUrl.hash.substring(1))){\n\trecordId = RegExp.$3;\n}else {\n\tvar jsonParam =\n\t\tJSON.parse(atob(decodeURIComponent(currentUrl.hash.substring(1))));\n\trecordId = jsonParam.attributes.feedElementId;\n}\n\nif (/^069/.test(recordId)){\n\ttargetUrl =  fileUrl + recordId;\n}else{\n\ttargetUrl = objUrl + recordId;\n}\nwindow.open(targetUrl,'_blank');\n\n\n\n",
+    "customName": "コンテンツ配信",
+    "exported": false,
+    "key": "c o n",
+    "open": false,
+    "sites": "*lightning.force.com*",
+    "sitesArray": [
+      "*lightning.force.com*"
+    ]
+  },
+  {
+    "action": "javascript",
+    "blacklist": "false",
+    "code": "if (/^(\\d{8}) /.test(document.title)){\n\tcaseNo = RegExp.$1;\n\tif (/r\\/Case/.test(location.href)){\n\t\twindow.open('https://org62.lightning.force.com/lightning/r/Report/00O0M000009ZrehUAC/view?fv0='+caseNo);\n\t}\n}else{\n\texit;\n}\n//旧版\n//location.href=location.href.replace(/Case\\/(500.*)\\/view/,'$1/related/CaseComments/view');",
+    "customName": "ケース画面からケースコメントを展開表示",
+    "exported": false,
+    "key": "c o m",
+    "open": false,
+    "sites": ".*org62.lightning.force.com/lightning/r/Case/500.*",
+    "sitesArray": [
+      ".*org62.lightning.force.com/lightning/r/Case/500.*"
+    ],
+    "label": "ケースコメント表示"
+  },
+  {
+    "key": "a s s",
+    "label": "Asset(Sold to)表示",
+    "action": "javascript",
+    "code": "if (/\\/Account\\/(001.{15})\\//.test(location.href)){\n\taccountId = RegExp.$1;\n\twindow.open('https://org62.lightning.force.com/lightning/r/Report/00O3y000009zNhpEAE/view?fv0='\n\t\t\t\t+ accountId );\n\t\n\t\t\n\t\t\n}else{\n\texit;\n}\n//旧版\n//\t\t'https://org62.lightning.force.com/lightning/r/Apttus_Config2__AssetLineItem__c/'\n//      + accountId\n//      + '/related/Apttus_Config2__AssetLineItems__r/view');\n",
+    "sites": "",
+    "sitesArray": [
+      ""
+    ]
+  },
+  {
+    "key": "o p p",
+    "label": "商談表示",
+    "action": "javascript",
+    "code": "if (/\\/Account\\/(001.{15})\\//.test(location.href)){\n\taccountId = RegExp.$1;\n\twindow.open('https://org62.lightning.force.com/lightning/r/Report/00O3y000009zNj7EAE/view?fv0='\n\t\t\t\t+ accountId );\n\t\n\t\t\n\t\t\n}else{\n\texit;\n}\n",
+    "activeInInputs": false,
+    "sites": "",
+    "sitesArray": [
+      ""
+    ]
+  },
+  {
+    "key": "c a s",
+    "label": "Case検索",
+    "action": "javascript",
+    "code": "if (/\\/Account\\/(001.{15})\\//.test(location.href)){\n\taccountId = RegExp.$1;\n\twindow.open('https://org62.lightning.force.com/lightning/r/Report/00O3y000009zYzfEAE/view?fv0='\n\t\t\t\t+ accountId );\n}else{\n\texit;\n}\n",
+    "sites": "",
+    "sitesArray": [
+      ""
+    ]
+  }
+]
